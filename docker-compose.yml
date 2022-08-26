@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  dispatching_queue:
+    image: rabbitmq:3.10.7-alpine
+    container_name: "dispatching_queue"
+    ports:
+      - "5672:5672"
+    healthcheck:
+      test: rabbitmq-diagnostics -q status
+      interval: 10s
+      timeout: 2s
+      retries: 3
+  
+  nginx:
+    image: nginx:latest
+    container_name: "nginx"
+    ports:
+      - 8000:8000
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./app/location_tracking:/usr/share/nginx/html
+
+  event_publisher:
+    image: mvuataxon/event_publisher:v1.0.0
+    container_name: "event_publisher"
+    environment:
+      - RABBIT_MQ_HOST=amqp://dispatching_queue
+      - QUEUE_NAME=events
+      - DELAY_MIN=1000
+      - DELAY_MAX=1001
+    restart: on-failure
+    depends_on:
+      - "dispatching_queue"
+    links:
+      - "dispatching_queue"
