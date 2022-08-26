@@ -17,6 +17,7 @@ In order to run the testing environment on your local machine, you will need to 
 * Git clone this repo
 * Have docker run on your machine
 * Execute ```docker-compose up```
+* After this, you can access the application with `http://localhost:8000`
 
 ### **The Environment already installed**
 
@@ -28,9 +29,7 @@ In order to run the testing environment on your local machine, you will need to 
 ### **The Environment does not provide or guarantee**
 
 * Any implementation of the Event Consumer service.
-* The integration with Nginx is working as expected.
 * The Location Tracking Application is working as expected.
-
 
 
 ## **Requirements**
