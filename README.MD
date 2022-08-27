@@ -2,6 +2,10 @@
 
 ## **Testing Environments**
 
+
+![Blank diagram](https://user-images.githubusercontent.com/1214659/187010647-0b9f0fea-72dd-40d6-ae9c-30b91c41af9c.png)
+
+
 We will provide a dockerized testing environment for each team to run on their own local machines. We make sure that the testing environment can be run on almost every machine, with little to no setup. 
 
 ### **Prerequisite**
@@ -14,7 +18,8 @@ In order to run the testing environment on your local machine, you will need to 
 
 ### **Installation**
 
-* Git clone this repo
+* Fork this repo into your namespace
+* Git clone this repo from your personal link
 * Have docker run on your machine
 * Execute ```docker-compose up```
 * After this, you can access the application with `http://localhost:8000`
