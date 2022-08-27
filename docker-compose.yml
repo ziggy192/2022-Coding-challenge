@@ -11,7 +11,7 @@ services:
       interval: 10s
       timeout: 2s
       retries: 3
-  
+
   nginx:
     image: nginx:latest
     container_name: "nginx"
